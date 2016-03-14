@@ -4,11 +4,7 @@
 #include <string>
 
 using namespace std;
-struct Player
-{
-   char nickname[10];
-   int nbVictoires;
-}
+
 class Pentago
 {
       int size;                        //taille du plateau, forcement pair
@@ -23,6 +19,5 @@ class Pentago
       void setWinLength(int winLength);
       void setBoard();
       void displayBoard();
-      void play();
 };
 #endif

@@ -84,5 +84,5 @@ void Pentago::displayBoard()
 
 void Pentago::play()
 {
-   //TODO
+   
 }
