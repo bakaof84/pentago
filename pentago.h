@@ -2,17 +2,21 @@
 #define PENTAGO
 #include "stdio.h"
 #include <string>
+#include<cstdlib>
+#include<ctime>
 
 using namespace std;
-struct Player
+struct player
 {
-   char nickname[10];
+   string nickname;
    int nbVictoires;
-}
+};
+
 class Pentago
 {
       int size;                        //taille du plateau, forcement pair
       int winLength;                   //nombre de pions à aligner pour gagner
+      int nbMorceaux;                  //nombre de sous plateaux
       char board[6][6];                //plateau de jeu TODO modulable
    public:
       Pentago(int taille=6, int nbAlignes=5);
@@ -23,6 +27,8 @@ class Pentago
       void setWinLength(int winLength);
       void setBoard();
       void displayBoard();
-      void play();
+      void poserPion(player P);
+      void tournerPlateau(int numMorceau, char sens); //TODO
+      bool winner(player gagnant);
 };
 #endif
