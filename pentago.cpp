@@ -55,7 +55,7 @@ void Pentago::setBoard()
    {
       for(int j=0;j<getSize();j++)
       {
-         board[i][j]='X';
+         board[i][j]=' ';
       }
    }
 }
@@ -103,78 +103,174 @@ void Pentago::poserPion(player P)
 
 void Pentago::tournerPlateau(int numMorceau, char sens)
 {
-/*
-   char ghostBoard[getSize()/2][getSize()/2];
-   switch(numMorceau) 
-   {
-      case 1 : 
-         if(sens=='D')
-         {
-            for(int i=0;i<getSize()/2;i++)
-            {
-               ghostBoard[i][getSize()/2-2] = board[getSize()/2][i];
-               ghostBoard[i][getSize()/2-1] = board[getSize()/2-1][i];
-               ghostBoard[i][getSize()/2] = board[getSize()/2-2][i];
-            }
-
-            for(int j=0;j<getSize()/2;j++)
-            {
-               for(int k=0;k<getSize()/2;k++)
-               {
-                  board[j][k] = ghostBoard[j][k];
-               }
-            }
-         }
-         else
-         {
-            for(int i=0;i<getSize()/2;i++)
-            {
-               ghostBoard[getSize()/2][i] = board[i][getSize()/2-2];
-               ghostBoard[getSize()/2-1][i] = board[i][getSize()/2-1];
-               ghostBoard[getSize()/2-2][i] = board[i][getSize()/2];
-            }
-
-            for(int j=0;j<getSize()/2;j++)
-            {
-               for(int k=0;k<getSize()/2;k++)
-               {
-                  board[j][k] = ghostBoard[j][k];
-               }
-            }
-         }
-         break;
-      case 2 : break;
-      case 3 : break;
-      case 4 : break;
-      default: cout << "Ce n'est pas un sous plateau valable"; break;
+   char ghost;
+   switch(numMorceau)
+	   {
+		   case 1 :
+				   if(sens=='D' || sens=='d')
+				   {
+					   ghost = board[0][0];
+					   board[0][0] = board[2][0];
+					   board[2][0] = board[2][2];
+					   board[2][2] = board[0][2];
+					   board[0][2] = ghost;
+					   ghost = board[0][1];
+					   board[0][1] = board[1][0];
+					   board[1][0] = board[2][1];
+					   board[2][1] = board[1][2];
+					   board[1][2] = ghost;
+				   }
+				   else
+				   {
+					   ghost = board[0][0];
+					   board[0][0] = board[0][2];
+					   board[0][2] = board[2][2];
+					   board[2][2] = board[2][0];
+					   board[2][0] = ghost;
+					   ghost = board[0][1];
+					   board[0][1] = board[1][2];
+					   board[1][2] = board[2][1];
+					   board[2][1] = board[1][0];
+					   board[1][0] = ghost;
+				   }
+				   break;
+		   case 2 :
+				   if(sens=='D' || sens=='d')
+				   {
+					   ghost = board[0][3];
+					   board[0][3] = board[2][3];
+					   board[2][3] = board[2][5];
+					   board[2][5] = board[0][5];
+					   board[0][5] = ghost;
+					   ghost = board[0][4];
+					   board[0][4] = board[1][3];
+					   board[1][3] = board[2][4];
+					   board[2][4] = board[1][5];
+					   board[1][5] = ghost;
+				   }
+				   else
+				   {
+					   ghost = board[0][3];
+					   board[0][3] = board[0][5];
+					   board[0][5] = board[2][5];
+					   board[2][5] = board[2][3];
+					   board[2][3] = ghost;
+					   ghost = board[0][4];
+					   board[0][4] = board[1][5];
+					   board[1][5] = board[2][4];
+					   board[2][4] = board[1][3];
+					   board[1][3] = ghost;
+				   }
+				   break;
+		   case 3 :
+				   if(sens=='D' || sens=='d')
+				   {
+					   ghost = board[3][0];
+					   board[3][0] = board[5][0];
+					   board[5][0] = board[5][2];
+					   board[5][2] = board[3][2];
+					   board[3][2] = ghost;
+					   ghost = board[3][1];
+					   board[3][1] = board[4][0];
+					   board[4][0] = board[5][1];
+					   board[5][1] = board[4][2];
+					   board[4][2] = ghost;
+				   }
+				   else
+				   {
+					   ghost = board[3][0];
+					   board[3][0] = board[3][2];
+					   board[3][2] = board[5][2];
+					   board[5][2] = board[5][0];
+					   board[5][0] = ghost;
+					   ghost = board[3][1];
+					   board[3][1] = board[4][2];
+					   board[4][2] = board[5][1];
+					   board[5][1] = board[4][0];
+					   board[4][0] = ghost;
+				   }
+				   break;
+		   case 4 :
+				   if(sens=='D' || sens=='d')
+				   {
+					   ghost = board[3][3];
+					   board[3][3] = board[5][3];
+					   board[5][3] = board[5][5];
+					   board[5][5] = board[3][5];
+					   board[3][5] = ghost;
+					   ghost = board[3][4];
+					   board[3][4] = board[4][3];
+					   board[4][3] = board[5][4];
+					   board[5][4] = board[4][5];
+					   board[4][5] = ghost;
+				   }
+				   else
+				   {
+					   ghost = board[3][3];
+					   board[3][3] = board[3][5];
+					   board[3][5] = board[5][5];
+					   board[5][5] = board[5][3];
+					   board[5][3] = ghost;
+					   ghost = board[3][4];
+					   board[3][4] = board[4][5];
+					   board[4][5] = board[5][4];
+					   board[5][4] = board[4][3];
+					   board[4][3] = ghost;
+				   }
+				   break;
    }
-*/
 }
 
-bool Pentago::winner(player P)
+player Pentago::win(player P1, player P2)
 {
-   int row = 0;
-   for(int i=0;i<getSize();i++)
-   {
-      for(int j=0;j<getSize();j++)
-      {
-         if(board[i][j]==P.nickname[0])
-            row++;
-      }
-   }
-   if(row==winLength)
-      return true;
+   player None;
+   None.nickname = "None";
+   None.nbVictoires = 0;
+   if(checkRow(P1)) return P1;
+   if(checkRow(P2)) return P2;
+   if(checkColumn(P1)) return P1;
+   if(checkColumn(P2)) return P2;
+   return None;
+}
 
-   row = 0;
-   for(int k=0;k<getSize();k++)
-   {
-      for(int l=0;l<getSize();l++)
-      {
-         if(board[l][k]==P.nickname[0])
-            row++;
-      }
-   }
-   if(row==winLength)
-      return true;
-   return false;
+bool Pentago::checkRow(player P)
+{
+   int compteur;
+	for(int i=0 ;i<=getSize()-1;i++)
+	{
+		compteur = 0;
+		for(int j=0;j<=getSize()-1;j++)
+		{
+			if(board[i][j]==P.nickname[0])
+			{
+				compteur++;
+				if(compteur==winLength)
+					return true;
+			}
+			else
+				compteur = 0;
+		}
+	}
+	return false;
+}
+
+bool Pentago::checkColumn(player P)
+{
+   int compteur;
+	for(int i=0 ;i<=getSize()-1;i++)
+	{
+		compteur = 0;
+		for(int j=0;j<=getSize()-1;j++)
+		{
+			if(board[j][i]==P.nickname[0])
+			{
+				compteur++;
+				if(compteur==winLength)
+					return true;
+			}
+			else
+				compteur = 0;
+		}
+	}
+	return false;
 }

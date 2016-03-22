@@ -28,7 +28,9 @@ class Pentago
       void setBoard();
       void displayBoard();
       void poserPion(player P);
-      void tournerPlateau(int numMorceau, char sens); //TODO
-      bool winner(player gagnant);
+      void tournerPlateau(int numMorceau, char sens);
+      player win(player P1, player P2);
+      bool checkRow(player P);
+      bool checkColumn(player P);
 };
 #endif

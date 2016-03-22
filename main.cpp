@@ -64,7 +64,6 @@ int main()
       partie1.poserPion(J1);
       partie1.displayBoard();
 
-      /*
       int numMorceau = 0;
       char sens = ' ';
       cout << "Les sous-plateaux sont repartis de cette maniere : " << endl;
@@ -75,14 +74,18 @@ int main()
       cout << "Choisir le sens (D/G)" << endl;
       cin >> sens;
       partie1.tournerPlateau(numMorceau, sens);
-      */
 
-      if(partie1.winner(J1))
+      if(partie1.win(J1,J2).nickname==J1.nickname)
       {
-         gagnant = J1.nickname;
          partieTerminee = true;
+         break;
       }
-      
+      if(partie1.win(J1,J2).nickname==J2.nickname)
+      {
+         partieTerminee = true;
+         break;
+      }
+
       partie1.displayBoard();
       cout << "C'est au tour de " << J2.nickname << endl;
 
@@ -101,14 +104,19 @@ int main()
       cin >> sens;
       partie1.tournerPlateau(numMorceau, sens);
       */
-
-      if(partie1.winner(J2))
+      if(partie1.win(J1,J2).nickname==J1.nickname)
       {
-         gagnant = J2.nickname;
          partieTerminee = true;
+         break;
       }
+      if(partie1.win(J1,J2).nickname==J2.nickname)
+      {
+         partieTerminee = true;
+         break;
+      }
+
    }
    cout << "Partie terminee" << endl;
-   cout << "Le gagnant est : " << gagnant << endl;
+   cout << "Le gagnant est : " << partie1.win(J1,J2).nickname << endl;
    cout << "A bientot" << endl;
 }
